@@ -101,3 +101,4 @@ docker inspect <container_id> | grep IPAddress
 
 
 Docker Pipelines: 
+check the Jenkinsfile in the project home directory
