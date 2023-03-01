@@ -41,6 +41,7 @@ $ docker run --name jenkins-blueocean --restart=on-failure --detach \
 --volume jenkins-data:/var/jenkins_home \
 --volume jenkins-docker-certs:/certs/client:ro \
 --publish 8080:8080 --publish 50000:50000 myjenkins-blueocean:2.332.3-1
+-e JAVA_OPTS=-Duser.timezone=America/New_York
 
 In jenkins( build-in node ):
 1) get passwd
