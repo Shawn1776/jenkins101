@@ -102,3 +102,15 @@ docker inspect <container_id> | grep IPAddress
 
 Docker Pipelines: 
 check the Jenkinsfile in the project home directory
+1) General configerations:
+	Discard old Builds
+		Strategy
+		Days to keep builds
+		Max # of Builds
+2) Build Triggers
+	Github hook trigger for GITScm polling
+	Poll SCM
+3) Pipeline: 
+	credentials: (study the credential() function and the returns )
+	branch ( /master or /main or whatever ) 
+	Script Path
