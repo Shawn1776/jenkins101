@@ -120,7 +120,5 @@ Add a Git web hooks:
 // on Jenkins job configure page
 1) GitHub hook trigger for GITScm polling 
 // on Github your repositery -> setting -> webhooks -> Add webhook
-* Payload URL: (ngrok.com for setup proxy url )
-* select triggering event
-
-3) 
+* Payload URL: (ngrok.com for setup proxy url ) and choose content type as *** application/json ***  
+* select triggering event: push 
