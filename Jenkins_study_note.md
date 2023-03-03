@@ -114,3 +114,13 @@ check the Jenkinsfile in the project home directory
 	credentials: (study the credential() function and the returns )
 	branch ( /master or /main or whatever ) 
 	Script Path
+
+
+Add a Git web hooks:
+// on Jenkins job configure page
+1) GitHub hook trigger for GITScm polling 
+// on Github your repositery -> setting -> webhooks -> Add webhook
+* Payload URL: (ngrok.com for setup proxy url )
+* select triggering event
+
+3) 
