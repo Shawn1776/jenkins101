@@ -1,1 +1,0 @@
-/Users/shawn/git-sandbox/learn_tools/jenkins101/Jenkins_study_note.md
