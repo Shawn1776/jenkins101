@@ -1,10 +1,11 @@
 Jenkins
-( automation platform allow youto build/test/deploy
-software using pipelines and more: run bash/python script as well
+( automation platform allow you to build/test/deploy
+software using pipelines and more, e.g.: run bash/python script as well
 as ansible playbooks )
 
 feature:
 	web gui
+	can be boosted from Docker
 
 Infrastructure：
 	Jenkins (work depaching maste)
@@ -17,9 +18,9 @@ Infrastructure：
 Build type:
 
 1) Freestyle
-	 ( linux shell script like, use UI ... )
+	 ( linux shell script like, use webpage UI ... )
 2) Pipelines
-	 ( Groovy -> sections(Clone, Build, test, Package, Deplogy) )
+	 ( Groovy -> sections(Clone, Build, test, Package, Deploy) )
 
 Install: ( with blue Ocean )
 1) git clone
@@ -34,6 +35,8 @@ $ docker build -t myjenkins-blueocean:2.332.3-1 .
 $ docker network create jenkins
 
 4) run this jenkins docker image in a container...
+
+# fixed the time zone when run docker Mar9
 
 $ docker run --name jenkins-blueocean --restart=on-failure --detach \
 --network jenkins --env DOCKER_HOST=tcp://docker:2376 \
@@ -84,13 +87,13 @@ Create Jenkins node ( local permanent node ( via ssh ) / cloud {docker, kubernet
 
 -> after reboot
 
-dashbaord -> manage Jenkins -> plugin manager
+dashboard -> manage Jenkins -> plugin manager
 
 uri of the host that running docker windows ( via a docker container ) ...
 
-we then have jenkins image and docker image, we need another image to connect the jenkins image and docker image
+we then have jenkins image and docker image running, we need another image to connect the jenkins image and docker image
 
-which is a alpine/cocat image that provide a intermedium layer
+which is a alpine/cocat image that will provide a intermedium layer
 
 docker run -d --restart=always -p 127.0.0.1:2376:2375 \
 --network jenkins -v /var/run/docker.sock:/var/run/docker.sock \
