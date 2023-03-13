@@ -113,7 +113,11 @@ check the Jenkinsfile in the project home directory
 2) Build Triggers
 	Github hook trigger for GITScm polling
 	Poll SCM
-3) Pipeline: 
+3) Build (freestyle)
+	Execute shell ( Mac and linux ) or Execute windows Batch Command
+
+
+4) Pipeline: 
 	credentials: (study the credential() function and the returns )
 	branch ( /master or /main or whatever ) 
 	Script Path
@@ -125,3 +129,19 @@ Add a Git web hooks:
 // on Github your repositery -> setting -> webhooks -> Add webhook
 * Payload URL: (ngrok.com for setup proxy url ) and choose content type as *** application/json ***  
 * select triggering event: push 
+
+Mar 13 job1->job2->job3 (require a "Devliver pipeline" Jenkins plug-in)
+1) free style add a a post-build trigger
+
+2) pepeline: (a continuous delivery pipeline using Jenkins)
+e.g.:
+build job
+ ->
+deploy job
+ ->
+test job
+https://www.youtube.com/watch?v=lCSMialN7kU
+
+you want to create "view" also 
+
+
