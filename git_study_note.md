@@ -1,3 +1,53 @@
+1) 
+```
+git clone url
+```
+2) create dependency softlinks
+```
+ln -s /source-file-directory/ . 
+```
+3) build
+```
+make opt
+```
+
+4) for a Pull Request  (git fetch-> update locally)
+```
+git status
+git fetch
+git checkout <existing_branch>
+git checkout -b <new-branch-name>
+git banch      # check which branch you are working
+git log
+git remote -v  # show which remote branch you can push to ...
+git push origin <brach-name>     # can be what you created before in line 18
+```
+5) check git origin 
+```
+git remote -v
+```
+6) after you get your code review make change on your code, test
+
+7) check your git status
+```
+git status -uno
+git status 
+git log
+```
+8) add and commit
+```
+git commit -am "New Message"
+```
+9) push to github again: push branch_name to remote origin brach(unsually main branch)
+```
+git push origin <branch_name>
+```
+13) wait for new comments or your PR (Push Review) be approved...
+
+
+
+
+
 1) a git project using submodules:
 ```
 git submodule update --init --recursive
