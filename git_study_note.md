@@ -1,3 +1,7 @@
+
+0) chceck tokens and git access first!!! 
+```
+```
 1) 
 ```
 git clone url
@@ -14,13 +18,18 @@ make opt
 4) for a Pull Request  (git fetch-> update locally)
 ```
 git status
-git fetch
+git fetch  # git fetch changes from remotes
+git pull   # fetch changes and then merges changes to your local branches... 
 git checkout <existing_branch>
 git checkout -b <new-branch-name>
 git banch      # check which branch you are working
-git log
+git log -p 2 # -p or --patch, 2 limit to 2 items
 git remote -v  # show which remote branch you can push to ...
 git push origin <brach-name>     # can be what you created before in line 18
+
+# check remote branch and pull from remote branch
+git branch -r # -r is short for remote
+
 ```
 5) check git origin 
 ```
