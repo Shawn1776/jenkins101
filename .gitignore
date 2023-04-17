@@ -5,3 +5,4 @@ Jenkins_groovy/jenkins_delete_after_study.groovy
 # directories
 local_files
 confidential
+EDA_study_notes

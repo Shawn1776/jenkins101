@@ -145,3 +145,18 @@ https://www.youtube.com/watch?v=lCSMialN7kU
 you want to create "view" also 
 
 
+Mar 23 summary:
+1) build 
+- check your git head, and make sure no build conflicts 
+
+2) unit-tests
+- check 
+	-1 your git head 
+	-2 if build sccuessed
+	-3 achieve your git-head for a sccuess tests
+
+3) advance to dev 
+	- check your 
+4) system tests
+
+5) advance to prod 
