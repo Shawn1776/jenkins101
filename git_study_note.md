@@ -83,7 +83,7 @@ When you run this command, Git will look for any submodules in the repository an
 This command is useful when you're working on a project that uses submodules, as it ensures that all submodules are up-to-date and included in your local copy of the repository.
 
 # show the git diff 
-at the dirtory, where the .git file? directory loacated... 
+at the directory, where the .git file? directory loacated... 
 1) use tig
 ```
 tig 
