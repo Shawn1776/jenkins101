@@ -1,10 +1,10 @@
 1
-```
+```cpp
 std::array arr{ class1{}, class2{} }; // safety initialize the 2 class1{} and class2{} elements array // C++17 new feature... 
 std::span arr_span(arr, 2);             // access to the contiguous sequence of arr elements
 ```
 2 h file class defination:
-```
+```cpp
 class o{
 typedef bool (*Tr)(
 const c &w, void * u);
@@ -35,13 +35,13 @@ template <class T> static void ck(io *ioj, T *aj, oD dt, io *p=NULL, io *rt=NULL
 
 In the case of the o class, it's not clear from the code snippet why the static keyword is used for the gMp member variable and the ck member function. However, using static for a member variable or member function can be useful in cases where you want to share a variable or function across all instances of the class, or when you want to create a utility function that doesn't depend on any instance-specific state.
 
-```
+```cpp
   if ( o->get( ox ) ) 
   {
     for ( or<r> i{ b->gs() };
     r const *h{i.gN()}; )
     
-
+  }
 ```
 
 The first line is checking if o has a function called get that takes a parameter ox and returns a boolean value. If this function exists and returns true, the following code block enclosed in the curly braces { } will be executed.
@@ -49,3 +49,112 @@ The first line is checking if o has a function called get that takes a parameter
 The second line is declaring a for loop that initializes a variable i of type or<r> with the result of calling the gs() function on an object b. It is not clear what or or r represent without more context.
 
 Without more information about what the code is trying to accomplish or what o, ox, b, or, and r represent, it is difficult to provide a more detailed explanation. If you can provide more context, I'd be happy to try and help further.
+
+
+# `this` keyword in C++
+
+In C++, the keyword "this" is a pointer that refers to the current object. It is a special keyword that is automatically defined within the scope of a non-static member function (i.e., a method) of a class or struct.
+
+When you have a member function defined within a class or struct, the "this" pointer allows you to access the object on which the member function is being called. It can be used to refer to the member variables and member functions of the current object.
+
+Here's an example to illustrate the usage of "this" in C++:
+
+```cpp
+Copy code
+class MyClass {
+private:
+    int value;
+
+public:
+    void setValue(int value) {
+        this->value = value;  // "this" refers to the current object
+    }
+
+    int getValue() {
+        return this->value;  // accessing the member variable using "this"
+    }
+};
+```
+In the above example, the member function setValue uses the "this" pointer to access the member variable value of the current object. Similarly, the member function getValue uses "this" to return the value of the member variable.
+
+The "this" pointer can also be useful when you have a parameter with the same name as a member variable. In such cases, you can use "this" to differentiate between the local variable and the member variable.
+
+```cpp
+Copy code
+class MyClass {
+private:
+    int value;
+
+public:
+    void setValue(int value) {
+        this->value = value;  // "this" disambiguates between the member variable and the parameter
+    }
+};
+```
+By using "this", you can explicitly indicate that you want to modify the member variable value rather than the function parameter value.
+
+Note that "this" is a pointer, so you can also use it to access member variables and functions using the arrow operator (->) instead of the dot operator (.) when accessing them.
+
+```cpp
+Copy code
+void MyClass::someFunction() {
+    this->setValue(42);  // using the arrow operator to call a member function
+    int x = this->value;  // using the arrow operator to access a member variable
+}
+```
+Overall, the "this" keyword in C++ is used to refer to the current object inside a member function and enables you to work with the member variables and functions of that object.
+
+# difference btw arrow operator (->) and the dot operator (.) 
+
+In C++, the dot operator (.) and the arrow operator (->) are used to access members of a structure or a class. However, they have different usages depending on the type of object being accessed.
+
+Dot Operator (.)
+The dot operator is used to access members of an object when you have a direct instance of the object itself, rather than a pointer to it. It is typically used with object instances or references.
+Here's an example:
+
+```cpp
+Copy code
+class MyClass {
+public:
+    int value;
+    void printValue() {
+        cout << value << endl;
+    }
+};
+
+MyClass obj;
+obj.value = 42;       // Accessing member variable using the dot operator
+obj.printValue();     // Calling member function using the dot operator
+In the above example, the dot operator is used to access the member variable value and call the member function printValue() directly on the object obj.
+```
+Arrow Operator (->)
+The arrow operator is used to access members of an object when you have a pointer to that object. It is typically used with pointers to objects.
+Here's an example:
+
+```cpp
+Copy code
+class MyClass {
+public:
+    int value;
+    void printValue() {
+        cout << value << endl;
+    }
+};
+
+MyClass* ptr = new MyClass();
+ptr->value = 42;      // Accessing member variable using the arrow operator
+ptr->printValue();    // Calling member function using the arrow operator
+```
+In the above example, the arrow operator is used to access the member variable value and call the member function printValue() using the pointer ptr. Since ptr is a pointer to MyClass, the arrow operator is used to dereference the pointer and access the members of the object it points to.
+
+Essentially, the dot operator is used with object instances or references, while the arrow operator is used with pointers to objects. The arrow operator implicitly dereferences the pointer to access the members, while the dot operator works directly with the object itself.
+
+It's worth noting that if you have a pointer to an object, you can also dereference it and use the dot operator instead of the arrow operator, like this:
+
+```cpp
+Copy code
+MyClass* ptr = new MyClass();
+(*ptr).value = 42;      // Accessing member variable using dereference and dot operator
+(*ptr).printValue();    // Calling member function using dereference and dot operator
+```
+However, using the arrow operator is more concise and generally preferred when working with pointers to objects.
