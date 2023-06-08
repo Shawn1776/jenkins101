@@ -176,3 +176,9 @@ GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
 Full documentation at: <https://www.gnu.org/software/coreutils/basename>
 or available locally via: info '(coreutils) basename invocation'
 ```
+
+## cp file to multiple files"
+
+```bash
+for file in file2 file3 ; do cp file1 "$file" ; done
+```

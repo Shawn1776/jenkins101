@@ -158,3 +158,29 @@ MyClass* ptr = new MyClass();
 (*ptr).printValue();    // Calling member function using dereference and dot operator
 ```
 However, using the arrow operator is more concise and generally preferred when working with pointers to objects.
+
+```c++
+
+struct s
+s_t {
+          bool opt{};
+
+          s_t() : opt{ opts->get_opt( Keywords ) }
+          {
+            opts->set_opt( Keywords, false );
+          }
+          ~s_t() { opts->set_opt( Keywords, opt ); }
+
+        } s{};
+```
+This C++ code defines a structure called `s_t`. Let's break down what the code does step by step:
+
+The structure `s_t` is defined, which contains a single member variable called option of type bool.
+
+The `s_t` structure has two member functions defined within it, namely the constructor and the destructor. The constructor is defined using the syntax `s_t() : opt{ opts->get_opt( Keywords ) }`, and the destructor is defined using the syntax `~s_t() { opts->set_opt( Keywords, opt ); }`.
+
+The constructor initializes the option member variable using the result of `opts->get_opt(Keywords)`. It appears that `opts` is a pointer to an object or a class that has a member function `get_opt()` which takes a parameter Keywords and returns a boolean value. The constructor also sets the `opt` Keywords to false using `opts->set_opt(Keywords, false)`. It's assumed that Keywords is some predefined identifier or constant.
+
+The destructor is responsible for restoring the `opt` Keywords back to its original value. It calls `opts->set_opt(Keywords, opt)`, which sets the `opt` Keywords to the value stored in the `opt` member variable.
+
+Finally, an instance of the `s_t` structure is created and named `s`. This instance is defined outside of any function, so it is a global variable.

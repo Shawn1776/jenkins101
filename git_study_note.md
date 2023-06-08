@@ -85,7 +85,10 @@ This command is useful when you're working on a project that uses submodules, as
 # show the git diff 
 at the directory, where the .git file is loacated... 
 1) use tig
+```bash
+./opt/xsite/cte/tools/git/next/bin/tig
 ```
+```bash
 tig 
 -> enter 
 ```
@@ -98,3 +101,47 @@ tig/<git diff>/<git log>/<git show>  origin/<branch-name>            # in that b
 ```
 git diff master~20:<your-file> <your-file>   # e.g. <your-file>=path/file.c
 ```
+
+4) git check code change via hash tag
+
+In Git, you can check a code change using a "commit hash", not a hash tag. Here's how you can do it:
+
+Open a terminal or command prompt.
+Navigate to the directory of the Git repository where the code change you want to check is located.
+Use the following command to view the details of a specific commit:
+
+```php
+git show <commit_hash>
+```
+
+To see which files are changed in a specific commit using a commit tag, you can use the following command:
+
+```bash
+git show --name-only <commit_tag>
+```
+
+The git show command will display information about the commit, including the author, date, commit message, and the actual code changes made in that commit.
+
+Yes, you can use tig to see the Git differences. tig is a text-mode interface for Git that provides a visual representation of the commit history and allows you to navigate and view changes.
+
+To use tig to see the Git differences, follow these steps:
+
+Open a terminal or command prompt.
+Navigate to the directory of the Git repository where you want to view the differences.
+Enter the following command to launch tig:
+
+```bash
+tig
+```
+
+This will open the tig interface, showing the commit history and the current branch you're on.
+
+Use the arrow keys or j and k keys to navigate through the commits and select the commit you want to inspect.
+
+Press Enter to view the details of the selected commit. This will show the commit message, author, and a list of changed files.
+
+To view the differences for a specific file, select the file and press Enter. This will show a visual representation of the changes made to the file, including added, modified, and deleted lines.
+
+Use the arrow keys to navigate through the changes within the file.
+
+By using tig, you can explore the commit history, view the details of each commit, and examine the differences introduced in the code changes.
