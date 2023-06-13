@@ -182,3 +182,129 @@ or available locally via: info '(coreutils) basename invocation'
 ```bash
 for file in file2 file3 ; do cp file1 "$file" ; done
 ```
+
+### look at the duplicates with feature sorted:
+```bash
+grep 'inst' instName.log  | grep -v copy\ placement | sort | head
+```
+
+`grep -v copy\ placement`: This command filters out lines that contain the phrase "copy placement" from the previous output. The -v option in grep is used to invert the match, i.e., it selects lines that do not contain the specified pattern.
+
+`|`: Another pipe symbol is used to redirect the output of the previous grep command to the next command.
+
+`sort`: This command sorts the lines of the input in alphabetical order. By default, it sorts in ascending order.
+
+`|`: Another pipe symbol is used to redirect the output of the previous sort command to the next command.
+
+`head`: This command selects the first few lines of the input. By default, it selects the first 10 lines, but it can be modified with the -n option followed by the desired number of lines.
+
+In summary, the entire command you provided performs the following operations:
+
+1. It searches for lines containing the word "inst" in the file instName.log.
+2. It filters out lines that contain the phrase "copy placement".
+3. It sorts the remaining lines in alphabetical order.
+4. It selects the first few lines of the sorted output.
+The result is a list of the first few lines from instName.log that contain the word "inst", excluding lines with "copy placement" and sorted in alphabetical order.
+
+
+### what is a callstack
+
+A call stack, also known as an execution stack, is a data structure used by a computer program during its execution. It keeps track of the sequence of function calls that have been invoked in the program.
+
+When a program executes a function, it pushes information related to that function onto the call stack. This information typically includes the function's return address, local variables, and other relevant data. The program then jumps to the called function and continues its execution.
+
+If the called function further invokes another function, the new function's information is pushed onto the stack, creating a new stack frame. This process continues as functions call other functions, creating a stack of nested stack frames.
+
+When a function completes its execution, its stack frame is popped from the call stack, and the program returns to the caller function at the return address stored in the previous stack frame. This allows the program to resume its execution from the point it left off.
+
+The call stack is essential for maintaining the order and context of function calls in a program. It ensures that each function returns to the correct location and that local variables are correctly scoped within their respective functions.
+
+The call stack also plays a crucial role in handling exceptions and managing program flow. When an exception occurs, the call stack helps in determining the appropriate exception handler to unwind the stack and handle the exception.
+
+Overall, the call stack is a fundamental mechanism used by programs to manage the flow of execution and track function calls and returns during runtime.
+
+
+### How to Set and Unset Local, User and System Wide Environment Variables in Linux
+
+Environment Variables are some special variables that are defined in shell and are needed by programs while execution. They can be system defined or user defined. System defined variables are those which are set by system and are used by system level programs.
+
+e.g.: `PWD` command is a very common system variable which is used to store the present working directory. `echo $PWD` show the current working directory 
+
+#### Local Environment Variable 
+One defined for the current session. These environment variables last only till the current session, be it remote login session, or local terminal session. These variables are not specified in any configuration files and are created, and removed by using a special set of commands.
+
+#### User Environment Variable
+```bash
+.bashrc  # This file is user specific file that gets loaded each time user creates a new local session i.e. in simple words, opens a new terminal.
+.bash_profile # This file is user specific remote login file. Environment variables listed in this file are invoked every time the user is logged in remotely i.e. using ssh session. If this file is not present, system looks for either .bash_login or .profile files.
+.bash_login
+.profile
+```
+#### System wide Environment Variables
+```bash
+/etc/environment # This file is system wide file for creating, editing or removing any environment variables. Environment variables created in this file are accessible all throughout the system, by each and every user, both locally and remotely.
+/etc/profile     # System wide profile file. All the variables created in this file are accessible by every user on the system, but only if that user’s session is invoked remotely, i.e. via remote login. Any variable in this file will not be accessible for local login session i.e. when user opens a new terminal on his local system.
+/etc/profile.d/
+/etc/bash.bashrc # System wide bashrc file. This file is loaded once for every user, each time that user opens a local terminal session. Environment variables created in this file are accessible for all users but only through local terminal session. When any user on that machine is accessed remotely via a remote login session, these variables would not be visible.
+```
+These variables are loaded every time system is powered on and logged in either locally or remotely by any user.
+
+```bash
+$ source <file-name>
+```
+### Set or Unset Local or Session-wide Environment Variables in Linux
+```bash
+$ var=value 
+OR
+$ export var=value
+```
+These variables are session wide and are valid only for current terminal session. 
+
+### To Clear these session-wide environment variables following commands can be used: ***`unset` or `env` or `set the variable to ''` # (empty sting)
+
+```bash
+$ unset <var-name>
+```
+`var-name` is the name of local variable which you want to un-set or clear.
+
+
+`env` lists all the current environment variables. But, if used with `'-i'` switch, it temporarily clears out all the environment variables and lets user execute a command in current session in absence of all the environment variables.
+```bash
+$ env –i [Var=Value]… command args…
+```
+Here, `var=value` corresponds to any local environment variable that you want to use with this command only. 
+
+`$ env –i bash` Will give bash shell which temporarily would not have any of the environment variable. But, as you exit from the shell, all the variables would be restored.
+
+e.g.:
+```bash
+$ VAR1='TecMint is best Site for Linux Articles'
+$ echo $VAR1
+$ unset VAR1
+$ echo $VAR1
+```
+```bash
+export VAR='TecMint is best Site for Linux Articles'
+$ echo $VAR
+$ VAR=
+$ echo $VAR
+```
+
+```bash
+VAR2='TecMint is best Site for Linux Articles'
+$ echo $VAR2
+$ env -i bash
+$ echo $VAR2
+```
+### find a environment variable:
+```bash
+$ export VAR1=1
+$ env | grep VAR1
+VAR1=1
+$ VAR1=''
+$ env | grep VAR1
+VAR1=
+$ unset VAR1
+$ env | grep VAR1
+
+```
