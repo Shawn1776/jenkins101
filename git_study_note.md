@@ -145,3 +145,24 @@ To view the differences for a specific file, select the file and press Enter. Th
 Use the arrow keys to navigate through the changes within the file.
 
 By using tig, you can explore the commit history, view the details of each commit, and examine the differences introduced in the code changes.
+
+### how to push a local non main branch to the master branch in the remote?
+
+```bash
+$ git push <remote> <local branch name> : <remote branch to push into>
+```
+so that for our current working github repo example:
+
+```bash
+$ git push origin speed_up_feature_branch : master 
+```
+we might need to do a rebase first:
+```bash
+git fetch; git pull --rebase
+```
+ALTERNATIVELY
+simply switch to the `master` branch, `git fetch; git pull` and use `emacs ediff` to merge in the changes you would like to commit
+
+note: the <remote> is the name of the remote url, can be check by `git remote -v`, default value is `origin`
+
+
