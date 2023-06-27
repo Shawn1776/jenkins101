@@ -26,11 +26,17 @@ vars = {
 ARGV.options do | opts | 
     begin
         opts.banner = "Usage: #$0 [options]\n"
-        opts.on("-d", "--directory=DIR", "Root source dir."){|v| vars[ :root] = v}
-        opts.on("-r", "--remove", "Remove lib or dir. May not use with -u.") {|v| vars[ :rem ]=v}
+        opts.on("-d", "--directory=DIR", "Root source dir."                   ) {|v| vars[ :root] = v}
+        opts.on("-r", "--remove", "Remove lib or dir. May not use with -u."   ) {|v| vars[ :rem ]=v}
+        opts.on( "-q", "--quiet",         "No console output."                ) {|v| vars[ :quiet  ] = v } 
         opts.on("-u", "--update", "Update missing links. May not use with -r.") {|v| vars[ :update ]=v}
         opts.parse!
         raise opts.to_s if var[:rem] and vars[ :update ]
+    rescue
+        puts $!
+        exit(1)
+    end
+end
 
 ```
 The code you provided is defining a new method `exists?` for the File class in Ruby, while preserving the original behavior of the `exists?` method by aliasing it as `_exists?`.
