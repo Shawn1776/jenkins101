@@ -3,7 +3,34 @@
 
 $-w = nil                ### $-w warning level in ruby, set nil means no warning
 
+class << File
+    alias :_exists? : exists?
+    def File.exist?( arg )
+        _exists? arg or symlink? arg
+    end
+end
 
+require optparse
+require fileutils
+
+trap( "SIGINT"){ # single handler... SIGINT = ctrl+c 
+    trap("SIGINT") {}
+    puts "(W) Let me finish or this is hosed(cleaned up by hose)" # output a msg... 
+
+}
+
+vars = {
+    :lib => [],
+    :dir => []
+}
+ARGV.options do | opts | 
+    begin
+        opts.banner = "Usage: #$0 [options]\n"
+        opts.on("-d", "--directory=DIR", "Root source dir."){|v| vars[ :root] = v}
+        opts.on("-r", "--remove", "Remove lib or dir. May not use with -u.") {|v| vars[ :rem ]=v}
+        opts.on("-u", "--update", "Update missing links. May not use with -r.") {|v| vars[ :update ]=v}
+        opts.parse!
+        raise opts.to_s if var[:rem] and vars[ :update ]
 
 ```
 The code you provided is defining a new method `exists?` for the File class in Ruby, while preserving the original behavior of the `exists?` method by aliasing it as `_exists?`.
