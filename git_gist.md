@@ -73,12 +73,10 @@ git branch -r                          # check remote branch and pull from remot
 1) show the git diff 
 at the directory, where the .git file is loacated... 
 1.1) use tig
+
 ```bash
-./opt/xsite/cte/tools/git/next/bin/tig
-```
-```bash
-tig 
--> enter 
+tig                                   # in the directory, when you .git are at ...  
+-> Enter 
 ```
 1.2) use git log
 ```
