@@ -116,3 +116,27 @@ git checkout 123456:/txt/file.txt
 // use it
 git checkout :/txt/file.txt
 ```
+2) Prevent Visual Studio Code from exposing your Full Name on GitHub public repos
+
+use `git config --global` or `git config --local` to set `user.email` and `user.name`
+
+Open a terminal and change the directory of the repository you want to change and type these commands
+```bash
+git config --local user.name "Any Joe"
+git config --local user.email "any.joe@anonymouse.com"
+
+git config --list
+git config --list --show-origin
+
+#check
+git config --global user.name
+git config --global user.email
+# for a single repository
+git config user.name "Lisa"
+git config user.email "lisa@gmail.com"
+#check local
+git config user.name
+git config user.email
+
+```
+more:
