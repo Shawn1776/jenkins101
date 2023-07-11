@@ -1,7 +1,7 @@
 ##### v2 Jun28 2023
 
 0) chceck tokens and git access first!!! 
-```
+```bash
 tokens
 which git
 git --version
@@ -14,39 +14,50 @@ local      : your local GIT directory, ( note it may not be your local working/d
 remote     : Github (other people's work)
 
 1) I recommand you create a github repo (repository) remotely first, then git clone to your local directory. in that way, the origin, and HEAD is set for you in your local repo
-```
+```bash
 mkdir -p ~/sandbox/git/PROJECT-NAME
 cd ~/sandbox/git/PROJECT-NAME
 git clone <url-of-repo>
 ```
 2) do you work...
-```
+```bash
 editting code
 make/build
 unit-tests
 performance-tests
 ```
 3) check out others' updates before you `git push` your work  (before you push your code to remote repo, you want to check on changes made by your team, so that you want to update your local code first)
-```
+```bash
 git status                           # check your git branch and un tracked files
 git status -uno                      # only show files are tracked, make your status info cleaner
 git log                              # show all commits
 git log -p 2                         # -p or --patch, 2 limit to 2 commits
 git fetch                            # git fetch changes from remotes
 git pull                             # fetch changes and then merges changes to your local branches... 
-
-4) work on the work and the merging
+git fetch ; git pull                 
+```
+4) work on the work and the merging to git direcotry and then commit
 ```bash
 diff -wr <you-sandbox-develop-directory> <you-git-project-repo-direcotry> | grep ^diff        # -wr, is flag for ignoring whitespace in files
-do the editting for merging
-```
-5) push your code to github 
-```
-git push                                                                                      # if orign and branch set before 
-git push origin HEAD                                                                          # push the latest local commit to the default remote branch, 
-                                                                                              # "HEAD" is a reference to the latest commit of the currently checked out branch.
-git push <remote> <local branch name> : <remote branch to push into>                          # full git push: e.g.: `git push origin main : main` or 
+# do the editting for merging
+git commit -am "msg1 | msg2 | msg3 | msg4"
+# for mutliple changes 
+git commit -am "
+>1. change1                                    
+>2. change2
+>3. change3
+>..." 
 
+git commit -aF <log.txt>                                                         # edit the commit msg before commit...                       
+```
+
+5) push your code to github 
+```bash
+git push                                                                         # if orign and branch set before 
+git push origin HEAD                                                             # push the latest local commit to the default remote branch, 
+                                                                                 # "HEAD" is a reference to the latest commit of the currently checked out branch.
+git push <remote> <local branch name> : <remote branch to push into>             # full git push: e.g.: `git push origin main : main` or 
+```
 
 6) other helpful commands
 ```bash
@@ -79,12 +90,12 @@ tig                                   # in the directory, where you .git are at 
 -> Enter 
 ```
 1.2) use git log
-```
+```bash
 tig/<git diff>/<git log>/<git show>  origin/<branch-name>            # in that branch
                                      Head^..origin/<branch-name>     # in-between Head and origin/<branch-name>
 ```
 1.3) compare for one file
-```
+```bash
 git diff master~20:<your-file> <your-file>   # e.g. <your-file>=path/file.c
 ```
 
