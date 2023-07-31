@@ -166,4 +166,12 @@ simply switch to the `master` branch, `git fetch; git pull` and use `emacs ediff
 
 note: the <remote> is the name of the remote url, can be check by `git remote -v`, default value is `origin`
 
+### check git diff 
+git log -p -- <file-want-to-check>
+```bash
+git log -p -- clocktree_gui.py 
 
+```
+```bash
+git show HEAD
+```

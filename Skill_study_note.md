@@ -271,4 +271,53 @@ if( eq( a b ) progn( printf( "The same\n" ) list( a b )))
 ```
 
 
+### function ( lambda. nlambda -> have a single formal argument, macro -> compile at runtime)
+```S
+procedure( trAdd( x y )
+      printf( "Adding %d and %d ... %d \n" x y x+y )
+      x+y
+      ) => trAdd
+trAdd( 6 7 ) => 13
+```
+
+```S
+trAddWithMessageFun = lambda( ( x y )
+      printf( "Adding %d and %d ... %d \n" x y x+y )
+      x+y
+      ) 
+;;; => funobj:0x1814b90
+;;; You can subsequently pass a function object to the apply function together with an argument list. For example:
+
+apply( trAddWithMessageFun '( 4 5 ) ) 
+;;;=> 9
+```
+#### local variables:
+You can use the `let` function to establish temporary values for local variables.
+```S
+procedure( trGetBBoxHeight( bBox )
+      let( ( ll ur lly ury )  ;;; local variables only known inside let function, set to nil first
+            ll  = car( bBox ) 
+            lly = cadr( ll )
+            ur  = cadr( bBox )
+            ury = cadr( ur )
+            ury - lly
+      ) ; let                 ;;; return value `ury - lly` 
+) ; procedure
+```
+
+```S
+procedure( trGetBBoxHeight( bBox )
+    let( ( ( ll car( bBox ) ) ( ur cadr( bBox ) ) lly ury )
+        lly            = cadr( ll )
+        ury            = cadr( ur )
+        ury - lly
+    ) ; let
+) ; procedure
+```
+#### global variables ( term symbol in Skill ) and avoiding variables clash... 
+
+#### Access Arrow ( -> ) and squiggle Arrow ( ~> ) Operator and 
+#### array access syntax `[]` for elements of an array and key-value pairs in an association list 
+
+
 
