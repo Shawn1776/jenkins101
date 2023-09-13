@@ -87,7 +87,7 @@ This command is useful when you're working on a project that uses submodules, as
 at the directory, where the .git file is loacated... 
 1) use tig
 ```bash
-./opt/xsite/cte/tools/git/next/bin/tig
+git_tig # alias 
 ```
 ```bash
 tig 
@@ -171,7 +171,33 @@ git log -p -- <file-want-to-check>
 ```bash
 git log -p -- gui.py 
 git log -p -10 <file-name>
+git log --oneline # short or git log --pretty=oneline --abbrev-commit
+git log -10 --oneline
+git log --abbrev-commit
+git log -10 --pretty="%h %cD %cn %s"
+git branch -v
+git log -10 --pretty=format:"%h%x09%an%x09%ad%x09%s" # 
+git log -10 --pretty=format:"%C(yellow)%h %Cblue%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s"
+git log -10 --pretty=format:"%C(yellow)%h %C(yellow)%>(12)%ad %Cgreen%<(7)%aN%Cred%d %Creset%s"
+git log --pretty='%C(cyan)%ad %C(yellow)%h %C(cyan)%d %Creset%s %C(red)%aN' --date-order --graph --date=iso -10 # with timezone, one of the best
+# alias as: git_log
+git log --pretty='%C(cyan)%ad %C(yellow)%h %C(cyan)%d %Creset%s %C(red)%aN' --date-order --graph --date=format:%d/%m/%y\ %H:%M:%S -10 # without the timezone, best so far
 ```
+or in `.gitconfig` change settings:
+```bash
+...
+[log]
+  date = relative
+[format]
+  pretty = format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset
+...
+```
+or create once by command:
+`git hs -10`
+```bash
+git config --global alias.hs "log --pretty='%C(cyan)%ad %C(yellow)%h %C(cyan)%d %Creset%s %C(red)%aN' --date-order --graph --date=format:%d/%m/%y\ %H:%M:%S -10"
+```
+
 ```bash
 git show HEAD
 ```
