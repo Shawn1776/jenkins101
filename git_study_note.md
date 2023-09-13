@@ -169,9 +169,24 @@ note: the <remote> is the name of the remote url, can be check by `git remote -v
 ### check git diff 
 git log -p -- <file-want-to-check>
 ```bash
-git log -p -- clocktree_gui.py 
-
+git log -p -- gui.py 
+git log -p -10 <file-name>
 ```
 ```bash
 git show HEAD
 ```
+Update idea:
+https://stackoverflow.com/questions/5694389/get-the-short-git-version-hash 
+```bash
+# 1
+git status
+# 2 
+git diff 
+# 3
+git commit -am "...updates made..."
+# 4
+git log -10 --pretty=format:%h                       # `man git log` --> %h: abbreviated commit hash
+# 5
+git show <first-fewer-digits-of-your-commit-hash>    # git show 555a # 555ab # 555abc...
+```
+
