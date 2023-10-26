@@ -39,6 +39,12 @@ git fetch ; git pull
 4) work on the work and the merging to git direcotry and then commit
 ```bash
 diff -wr <you-sandbox-develop-directory> <you-git-project-repo-direcotry> | grep ^diff        # -wr, is flag for ignoring whitespace in files
+
+git status                                  # check modified/add/untracked files
+git add <files> <directory/>                # add file and/or directory/ to track
+git rm --cached <file1>                     # rm file or direcotry to track, but not remove file locally, NOTE will remove file in other developer machine when they do a `git pull`
+git reset <file>                            # simply untrack (but not remove?)
+
 # do the editting for merging
 git commit -am "msg1 | msg2 | msg3 | msg4"
 # for mutliple changes 
@@ -53,6 +59,7 @@ git commit -aF <log.txt>                                                        
 
 5) push your code to github 
 ```bash
+git diff --stat --cached origin/master        # check changed made before push
 git push                                                                         # if orign and branch set before 
 git push origin HEAD                                                             # push the latest local commit to the default remote branch, 
                                                                                  # "HEAD" is a reference to the latest commit of the currently checked out branch.
