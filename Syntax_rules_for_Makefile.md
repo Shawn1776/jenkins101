@@ -12,7 +12,7 @@ Here's an extended list of Makefile syntax rules with examples:
    ```makefile
    VARIABLE_NAME = value
    ```
-      - Variables are used to store values.
+   - Variables are used to store values.
    - Use `$(VARIABLE_NAME)` to reference the value of a variable.
    e.g.:
    ```makefile
