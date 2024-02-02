@@ -24,9 +24,9 @@ Here's an extended list of Makefile syntax rules with examples:
 
 
 3. **Automatic Variables:**
-   - **`$@:`** Represents the target.
-   - **`$<:`** Represents the first dependency.
-   - **`$^:`** Represents all dependencies.
+   - **`$@`:** Represents the target.
+   - **`$<`:** Represents the first dependency.
+   - **`$^`:** Represents all dependencies.
 e.g.:
 ```makefile
 all: program
@@ -37,8 +37,8 @@ program: main.o utils.o
 main.o: main.c
     $(CC) $(CFLAGS) -c -o $@ $<
 ```
-$@: Represents the target (program in this case).
-$<: Represents the first dependency (main.c).
+`$@` : Represents the target (program in this case).
+`$<` : Represents the first dependency (`main.c`).
 These can be used in the commands section of a rule.
 
 4. **Target and Dependency Rules:**
