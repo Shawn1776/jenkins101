@@ -24,9 +24,9 @@ Here's an extended list of Makefile syntax rules with examples:
 
 
 3. **Automatic Variables:**
-   - **$@:** Represents the target.
-   - **$<:** Represents the first dependency.
-   - **$^:** Represents all dependencies.
+   - **`$@:`** Represents the target.
+   - **`$<:`** Represents the first dependency.
+   - **`$^:`** Represents all dependencies.
 e.g.:
 ```makefile
 all: program
