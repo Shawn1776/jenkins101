@@ -19,7 +19,7 @@ Here's an extended list of Makefile syntax rules with examples:
    CC = gcc
    CFLAGS = -Wall
    ```
-   -`CC` is a variable for the compiler, and `CFLAGS` stores compiler flags.
+   - `CC` is a variable for the compiler, and `CFLAGS` stores compiler flags.
 
 
 3. **Automatic Variables:**
@@ -51,13 +51,13 @@ These can be used in the commands section of a rule.
    - **Commands:** Shell commands to build the target.
 
 5. **Pattern Rules:** 
-Defines a rule that can be applied to a set of files.
+- Defines a rule that can be applied to a set of files.
 
    ```makefile
    %.o: %.c
        commands
    ```
-   - Defines a rule that can be applied to a set of files.
+
    - For example, this rule says how to build a `.o` file from a corresponding `.c` file.
    e.g.:
 
@@ -76,8 +76,8 @@ Defines a rule that can be applied to a set of files.
 SOURCES = *.c
 OBJECTS = $(SOURCES:.c=.o)
 ```
-   - *.c matches all .c files.
-   - $(SOURCES:.c=.o) replaces the extension from .c to .o.
+   - `*.c` matches all .c files.
+   - `$(SOURCES:.c=.o)` replaces the extension from .c to .o.
    - `*` represents any string of characters.
    - `?` represents any single character.
 
@@ -127,7 +127,7 @@ e.g.:
    ```makefile
    processor := $(shell uname -p)
    ```
-    - Allows capturing the output of shell commands into variables.
+ - Allows capturing the output of shell commands into variables.
 
 11. **Silent Rules:**
     ```makefile
