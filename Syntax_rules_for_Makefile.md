@@ -200,5 +200,51 @@ e.g.:
 
    These special built-in targets are prefixed with a dot (.) and are often used to customize the behavior of make, especially in complex build systems. Each target serves a specific purpose in controlling aspects of the build process.
 
+13. **`?=`**
 
-Remember that indentation in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
+In a Makefile, the `?=` operator is used for conditional assignment. It assigns the value on the right to the variable on the left only if the variable on the left is not already defined. If the variable is already defined, it keeps its current value.
+
+Let's break down the line you provided:
+
+```make
+
+BEAN ?= /path/
+BEAN: This is the variable being defined or updated.
+```
+`?=` : This is the conditional assignment operator.
+
+`/path/` : This is the value that will be assigned to BEAN only if BEAN is not already defined.
+
+So, this line sets the value of the variable BEAN to /path/ if BEAN is not already defined.**If BEAN is already defined, it retains its current value, and the assignment has no effect.** *This allows users to override the default value of BEAN by defining it elsewhere in the Makefile or through command-line arguments when invoking make.*
+
+14. **`make echo` for Makefile debugging**
+
+The problem appears to be what `g++` generates with the `-M` option:
+
+If there are many included files then the rule is split into several lines using ‘\’-newline
+
+It appears as if makes $(shell ) function removes the newlines, but the \ characters stay in place, thus effectively escaping some of the extra whitespaces. If you add a rule like this:
+```makefile
+echo:
+    echo "$(DEP_LIST_FILTERED)"
+```
+and then `make echo`, you should see a list, something like this:
+```bash
+src.c /usr/include/c++/4.6/iostream \ /usr/include/c++/4.6/x86_64-linux-gnu/./bits/c++config.h \ /usr/include/c++/4.6/x86_64-linux-gnu/./bits/os_defines.h ...
+```
+
+
+So I think a possible fix here is simply to also filter-out the \ strings:
+
+```makefile
+DEP_LIST_FILTERED1 = $(filter-out \ , $(DEP_LIST_FILTERED))
+```
+```makefile
+echo1:
+    echo "$(DEP_LIST_FILTERED1)"
+```
+
+Then `make echo1` displays I think what you want.
+
+Remember that **indentation** in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
+
