@@ -270,5 +270,31 @@ VPATH := $(addsuffix :, $(MY_INCLUDES) \
 
 For example, if you have source files in the `src/` directory and header files in the `include/` directory, you might set `MY_INCLUDES` to `include` and `OBJS_DIR_PREFIX` to `src`, and this `VPATH` setup would allow make to find the necessary files in those directories during the build process.
 
+15 `incluldes`
+
+In this Makefile snippet, the `INCLUDES` variable is being defined using the `addprefix` function. The purpose is likely to generate a list of include directories for the compiler, typically used in C or C++ compilation.
+
+Let's break down the code:
+
+```makefile
+INCLUDES := $(addprefix -I, $(MY_INCLUDES))
+```
+
+1. `MY_INCLUDES` is presumably a variable containing a list of directory paths.
+
+2. The `addprefix` function is used to prepend the string "-I" to each directory path specified in `MY_INCLUDES`.
+
+3. The resulting list is assigned to the `INCLUDES` variable.
+
+Here, the `-I` flag is commonly used with C and C++ compilers to specify include directories. By using `addprefix`, the Makefile is creating a list of include directories with the appropriate flag for the compiler.
+
+For example, if `MY_INCLUDES` contains the paths "include1" and "include2," the resulting `INCLUDES` variable would be ` -I include1` and ` -I include2`. This can be used in the compilation {compile or compiler, producing a book, list or a app....} commands to ensure that the compiler looks for header files in the specified directories.
+
+```makefile
+gcc $(INCLUDES) -c source.c -o object.o
+```
+
+In this example, `$(INCLUDES)` would expand to 
+`gcc -I include1 -c source.c -o object.o` and  `gcc -I include2 -c source.c -o object.o`, providing the necessary include directories to the compiler during the compilation of `source.c` into `object.o`.
 
 Remember that **indentation** in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
