@@ -246,5 +246,29 @@ echo1:
 
 Then `make echo1` displays I think what you want.
 
-Remember that **indentation** in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
 
+14. Specify a list of variables in a Mike file
+
+This Makefile snippet sets the `VPATH` variable in a makefile. The `VPATH` variable is used to specify a list of directories that make should search for prerequisites. In this case, the directories are specified using the `addsuffix` function and the `:=` assignment operator, and the resulting list is assigned to `VPATH`.
+
+Let's break down the code:
+
+```makefile
+VPATH := $(addsuffix :, $(MY_INCLUDES) \
+                        $(MY_LIBFLAGS) \
+                        $(DEPEND_DIR_PREFIX) \
+                        $(OBJS_DIR_PREFIX) )
+```
+
+1. `MY_INCLUDES`, `MY_LIBFLAGS`, `DEPEND_DIR_PREFIX`, and `OBJS_DIR_PREFIX` are variables that presumably contain directory paths or flags.
+
+2. The `addsuffix` function is used to append a colon (`:`) to each of the directory paths or flags specified in the variables mentioned above. The resulting list will look like "path1: path2: path3: ...".
+
+3. The `:=` assignment operator is used for immediate assignment. It's a simple assignment that expands variables immediately rather than lazily. This is often used for efficiency in Makefiles.
+
+4. The final result is assigned to the `VPATH` variable. `VPATH` will now contain a colon-separated list of directories where make will look for prerequisites when building targets. This can be useful when your source files or include files are located in different directories, and you want to avoid cluttering your makefile with explicit path references.
+
+For example, if you have source files in the `src/` directory and header files in the `include/` directory, you might set `MY_INCLUDES` to `include` and `OBJS_DIR_PREFIX` to `src`, and this `VPATH` setup would allow make to find the necessary files in those directories during the build process.
+
+
+Remember that **indentation** in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
