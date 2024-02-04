@@ -297,4 +297,25 @@ gcc $(INCLUDES) -c source.c -o object.o
 In this example, `$(INCLUDES)` would expand to 
 `gcc -I include1 -c source.c -o object.o` and  `gcc -I include2 -c source.c -o object.o`, providing the necessary include directories to the compiler during the compilation of `source.c` into `object.o`.
 
+16 ** replace `.cpp` with `.beam1` **
+
+In this Makefile snippet, the variable `BEAMS1` is being defined using the `wildcard` function. It appears to be related to generating a list of `.beam1` files based on a list of source files (`SRCS`) with a `.cpp` extension.
+
+Let's break down the code:
+
+```makefile
+BEAMS1 := $(SRCS:.cpp=.beam1)
+```
+
+1. `SRCS` is presumably a variable containing a list of source file names with a `.cpp` extension.
+
+2. The expression `$(SRCS:.cpp=.beam1)` uses the substitution reference `:`, which replaces the suffix `.cpp` of each file in `SRCS` with `.beam1`. This operation is performed for each element in the list.
+
+3. The resulting list of `.beam1` files is assigned to the `BEAMS1` variable.
+
+For example, if `SRCS` contains the files `file1.cpp`, `file2.cpp`, and `file3.cpp`, then `BEAMS1` will be `file1.beam1`, `file2.beam1`, and `file3.beam1`.
+
+This kind of naming transformation is common in Makefiles when building targets with a different file extension or type compared to the source files. It allows for concise rules in the Makefile to specify dependencies and actions for different types of files based on a consistent naming convention.
+
+
 Remember that **indentation** in Makefiles is crucial, and it's typically done using tabs, not spaces. Mixing tabs and spaces can lead to errors. Also, make sure that the lines within a rule are indented with tabs.
